@@ -52,19 +52,19 @@ Value should be arguments that datachecker need:
 - datachecker - function that takes needed arguments and returns True or False if condition is mached
 - validator - validator function that raises error when any of value is not valid, or returns data when it's valid
 ```
-form ... import Constraint
+from easyvalid_data_validator.constraints import Constraint
 
 constraints = {
-    "name": {Constraint.STRING_REGEX: r'^[A-Z]+$},
+    "name": {Constraint.STRING_REGEX: r'^[A-Z]+$'},
     "age": {Constraint.INT_GE: 18},
-    "balance": {Constraint.STRING_DECIMAL: None}
+    "balance": {Constraint.STRING_IS_DECIMAL: None}
 }
 ```
 
 Validation is very easy now, we just need to provide validate_json_data() with json_data, and constraints:
 
 ```
-form ... import validate_json_data
+from easyvalid_data_validator.validator import validate_json_data
 
 result = validate_json_data(user, constraints)
 
