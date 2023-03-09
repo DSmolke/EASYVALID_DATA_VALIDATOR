@@ -8,7 +8,7 @@ from easyvalid_data_validator.common import validate_if_arg_is_of_type, validate
 
 class TestValidateIfArgIsOfType(TestCase):
     def test_with_argument_matching_type(self) -> None:
-        self.assertEquals(validate_if_arg_is_of_type(1, int, 'num1'), 1)
+        self.assertEqual(validate_if_arg_is_of_type(1, int, 'num1'), 1)
 
     def test_with_argument_not_matching_type(self) -> None:
         with self.assertRaises(TypeError) as e:
@@ -25,7 +25,7 @@ class TestValidateIfArgIsCallable(TestCase):
         cls.f = func
 
     def test_with_callable_argument(self):
-        self.assertEquals(validate_if_arg_is_callable(self.f, 'f'), self.f)
+        self.assertEqual(validate_if_arg_is_callable(self.f, 'f'), self.f)
 
     def test_with_not_callable_argument(self):
         with self.assertRaises(TypeError) as e:
@@ -42,7 +42,7 @@ class TestEvaluate_NumericComparison(TestCase):
         ]:
             with self.subTest(value1=value1, value1_type=value1_type, value2=value2, value2_type=value2_type,
                               operator_=operator_):
-                self.assertEquals(evaluate_numeric_comparison(value1, value1_type, value2, value2_type, operator_),
+                self.assertEqual(evaluate_numeric_comparison(value1, value1_type, value2, value2_type, operator_),
                                   True)
 
     def test_with_comparison_invalid(self) -> None:
@@ -53,7 +53,7 @@ class TestEvaluate_NumericComparison(TestCase):
         ]:
             with self.subTest(value1=value1, value1_type=value1_type, value2=value2, value2_type=value2_type,
                               operator_=operator_):
-                self.assertEquals(evaluate_numeric_comparison(value1, value1_type, value2, value2_type, operator_),
+                self.assertEqual(evaluate_numeric_comparison(value1, value1_type, value2, value2_type, operator_),
                                   False)
 
     def test_when_comparison_operator_is_invalid(self) -> None:

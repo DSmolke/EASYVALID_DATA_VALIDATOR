@@ -17,14 +17,14 @@ class TestMatchingRegex(TestCase):
             with self.subTest(i=i):
                 with self.assertRaises(TypeError) as e:
                     matches_regex(i, r'^1$')
-                    self.assertEquals(e.exception.args[0], f"Invalid expression type: {type(i)}")
+                    self.assertEqual(e.exception.args[0], f"Invalid expression type: {type(i)}")
 
     def test_for_invalid_regex_type(self):
         for i in [(1,), (1.1,), ((1,),), ([1],), (Decimal("1"),)]:
             with self.subTest(i=i):
                 with self.assertRaises(TypeError) as e:
                     matches_regex('expression', i)
-                    self.assertEquals(e.exception.args[0], f"Invalid expression type: {type(i)}")
+                    self.assertEqual(e.exception.args[0], f"Invalid expression type: {type(i)}")
 
 
 class TestIsDecimalString(TestCase):
