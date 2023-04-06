@@ -25,7 +25,7 @@ def _validate_json_dict_member(key: str, constraint: dict[str, Any], validated_d
     """
     errors = []
     validated_value = validated_data.get(key, False)
-    if not validated_value:
+    if key not in validated_data.keys():
         raise KeyError('Invalid key')
 
     for constraint_name, constraint_value in constraint.items():

@@ -56,6 +56,9 @@ class TestValidateJsonDictMember(TestCase):
             _validate_json_dict_member('B', {Constraint.INT_GE: 1}, {'A': 1})
             self.assertEqual(e.exception.args[0], "Invalid key")
 
+    def test_with_empty_string_as_value(self) -> None:
+        assert _validate_json_dict_member('A', {Constraint.IS_TYPE: str}, {'A': ""}) == []
+
 
 class TestValidateJsonData(TestCase):
     @classmethod
