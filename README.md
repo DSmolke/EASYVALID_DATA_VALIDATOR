@@ -1,6 +1,6 @@
 ## Installation
 
-You can install it directly from PyPi
+You can install it directly from PyPi https://pypi.org/project/easyvalid-data-validator/
 ```bash
   pip install easyvalid-data-validator
 ```
@@ -9,8 +9,15 @@ You can install it directly from PyPi
 
 All functions are fully tested
 
-You are able to run tests on your own by using this command being in package directory
+You are able to run tests on your own cloning repo and using it's environment:
+```
+  git clone https://github.com/DSmolke/EASYVALID_DATA_VALIDATOR.git
+  cd EASYVALID_DATA_VALIDATOR
+  poetry update
+  poetry shell
+```
 
+And then:
 ```bash
   poetry run python -m unittest discover -v
 ```
