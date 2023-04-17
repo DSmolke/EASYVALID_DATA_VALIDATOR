@@ -2,7 +2,7 @@ import unittest
 
 from unittest import TestCase
 
-from easyvalid_data_validator.datacheckers.boolean import is_true, is_false
+from easyvalid_data_validator.datacheckers.boolean_checker import is_true, is_false
 
 class TestIsTrue(TestCase):
     def test_when_valid_value(self) -> None:

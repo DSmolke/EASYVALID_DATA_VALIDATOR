@@ -2,7 +2,7 @@ import unittest
 
 from unittest import TestCase
 
-from easyvalid_data_validator.datacheckers.dictionary import are_keys_same_as
+from easyvalid_data_validator.datacheckers.dictionary_checker import are_keys_same_as
 
 
 class TestAreKeysSameAs(TestCase):

@@ -13,17 +13,37 @@ You are able to run tests on your own cloning repo and using it's environment:
 ```
   git clone https://github.com/DSmolke/EASYVALID_DATA_VALIDATOR.git
   cd EASYVALID_DATA_VALIDATOR
-  poetry update
-  poetry shell
 ```
 
-And then:
+### poetry:
 ```bash
+  poetry update
+  poetry shell
   poetry run python -m unittest discover -v
 ```
-or
+or:
 ```bash
-  poetry run pytest
+  poetry run pytest -vv
+```
+
+### pipenv:
+```bash
+  pipenv shell
+  pipenv run python -m unittest discover -v
+```
+or:
+```bash
+  pipenv run pytest -vv
+```
+
+### pip:
+```bash
+  python -m unittest discover -v
+```
+or:
+```bash
+  pip install pytest
+  pytest -vv
 ```
 # easyvalid-data-validator
 

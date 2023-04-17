@@ -1,7 +1,7 @@
 import unittest
 from unittest import TestCase
 
-from easyvalid_data_validator.datacheckers.integer import is_in_range, is_lower_than
+from easyvalid_data_validator.datacheckers.integer_checker import is_in_range, is_lower_than
 
 
 class TestIsInRange(TestCase):

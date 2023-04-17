@@ -4,7 +4,7 @@ import unittest
 from unittest import TestCase
 
 """ Objects to tests imports"""
-from easyvalid_data_validator.datacheckers.array import are_members_of_type, \
+from easyvalid_data_validator.datacheckers.array_checker import are_members_of_type, \
     is_array_length_of
 
 

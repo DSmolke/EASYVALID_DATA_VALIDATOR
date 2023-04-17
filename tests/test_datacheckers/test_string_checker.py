@@ -2,7 +2,7 @@ import unittest
 from decimal import Decimal
 from unittest import TestCase
 
-from easyvalid_data_validator.datacheckers.string import matches_regex, is_decimal_string
+from easyvalid_data_validator.datacheckers.string_checker import matches_regex, is_decimal_string
 
 
 class TestMatchingRegex(TestCase):

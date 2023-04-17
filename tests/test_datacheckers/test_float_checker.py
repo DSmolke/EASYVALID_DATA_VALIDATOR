@@ -2,7 +2,7 @@ import unittest
 
 from unittest import TestCase
 
-from easyvalid_data_validator.datacheckers.float import is_float_in_range, is_float_lower_than, is_float_le_than, is_float_equal, is_float_not_equal, is_float_grater_than, is_float_ge_than
+from easyvalid_data_validator.datacheckers.float_checker import is_float_in_range, is_float_lower_than, is_float_le_than, is_float_equal, is_float_not_equal, is_float_grater_than, is_float_ge_than
 
 
 class TestIsInRange(TestCase):

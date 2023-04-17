@@ -5,14 +5,14 @@ from typing import Any
 from easyvalid_data_validator.common import is_type
 from easyvalid_data_validator.constraints import Constraint
 from easyvalid_data_validator.customexceptions.common import ValidationError
-from easyvalid_data_validator.datacheckers.boolean import is_true, is_false
-from easyvalid_data_validator.datacheckers.float import is_float_lower_than, is_float_le_than, is_float_equal, \
+from easyvalid_data_validator.datacheckers.boolean_checker import is_true, is_false
+from easyvalid_data_validator.datacheckers.float_checker import is_float_lower_than, is_float_le_than, is_float_equal, \
     is_float_not_equal, is_float_grater_than, is_float_ge_than
-from easyvalid_data_validator.datacheckers.string import matches_regex, is_decimal_string
-from easyvalid_data_validator.datacheckers.integer import is_in_range, is_lower_than, is_le_than, is_grater_than, \
+from easyvalid_data_validator.datacheckers.string_checker import matches_regex, is_decimal_string
+from easyvalid_data_validator.datacheckers.integer_checker import is_in_range, is_lower_than, is_le_than, is_grater_than, \
     is_ge_than, is_equal, is_not_equal
-from easyvalid_data_validator.datacheckers.array import is_array_length_of, are_members_of_type
-from easyvalid_data_validator.datacheckers.dictionary import are_keys_same_as
+from easyvalid_data_validator.datacheckers.array_checker import is_array_length_of, are_members_of_type
+from easyvalid_data_validator.datacheckers.dictionary_checker import are_keys_same_as
 
 
 def _validate_json_dict_member(key: str, constraint: dict[str, Any], validated_data: dict[str, Any]) -> list[tuple[str]]:
@@ -31,6 +31,7 @@ def _validate_json_dict_member(key: str, constraint: dict[str, Any], validated_d
     for constraint_name, constraint_value in constraint.items():
 
         match constraint_name:
+            # -------------- STRING --------------
             case Constraint.STRING_REGEX:
                 if not matches_regex(validated_value, constraint_value):
                     errors.append((key, "Invalid string expression - does not match regex"))
@@ -38,6 +39,7 @@ def _validate_json_dict_member(key: str, constraint: dict[str, Any], validated_d
                 if not is_decimal_string(validated_value):
                     errors.append((key, "Invalid string expression - isn't decimal string "))
 
+            # -------------- INT --------------
             case Constraint.INT_BETWEEN:
                 if not is_in_range(validated_value, *constraint_value):
                     errors.append((key, "Invalid integer expression - isn't in range"))
@@ -60,6 +62,8 @@ def _validate_json_dict_member(key: str, constraint: dict[str, Any], validated_d
                 if not is_not_equal(validated_value, constraint_value):
                     errors.append((key, "Invalid integer expression - validated value and compare value are equal"))
 
+
+            # -------------- LIST --------------
             case Constraint.ARRAY_IS_LENGTH_OF:
                 if not is_array_length_of(validated_value, constraint_value):
                     errors.append((key, "Invalid array - has different length than expected"))
@@ -67,10 +71,13 @@ def _validate_json_dict_member(key: str, constraint: dict[str, Any], validated_d
                 if not are_members_of_type(validated_value, constraint_value):
                     errors.append((key, "Invalid array - some or all members have unexpected type"))
 
+            # -------------- DICT --------------
             case Constraint.DICT_HAS_SAME_KEYS:
                 if not are_keys_same_as(validated_value, constraint_value):
                     errors.append((key, "Invalid dictionary - keys are not the same"))
 
+
+            # -------------- FLOAT --------------
             case Constraint.FLOAT_LOWER:
                 if not is_float_lower_than(validated_value, constraint_value):
                     errors.append((key, "Invalid float - isn't lower than compare value"))
@@ -90,14 +97,17 @@ def _validate_json_dict_member(key: str, constraint: dict[str, Any], validated_d
                 if not is_float_ge_than(validated_value, constraint_value):
                     errors.append((key, "Invalid float - isn't grater or equal than compare value"))
 
+
+            # -------------- TYPE --------------
             case Constraint.IS_TYPE:
                 if not is_type(validated_value, constraint_value):
                     errors.append((key, "Invalid type - isn't same type like compare type"))
 
+
+            # -------------- BOOL --------------
             case Constraint.BOOL_TRUE:
                 if not is_true(validated_value):
                     errors.append((key, "Invalid boolean - isn't True"))
-
             case Constraint.BOOL_FALSE:
                 if not is_false(validated_value):
                     errors.append((key, "Invalid boolean - isn't False"))
