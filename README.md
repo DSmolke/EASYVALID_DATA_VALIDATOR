@@ -106,4 +106,4 @@ ValidationError("age": ["Invalid integer expression - isn't grater or equal to c
 
 ## Documentation link
 
-[Click to read documentation](https://github.com/DSmolke/EASYVALID_DATA_VALIDATOR/edit/master/README.md)
+[Click to read documentation](https://github.com/DSmolke/EASYVALID_DATA_VALIDATOR)
